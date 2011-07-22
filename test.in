@@ -1,0 +1,32 @@
+#Test input file for 1D mesh radiative transfer code
+
+Groups:
+#energy boundaries (first takes all below last takes all above)
+0  10  50  100  1000
+
+Materials:
+#must be same number of ranges for each material as group boundaries+1
+#name , lowE highE ,lowE highE , ...
+myMaterial1 , 0 10 , 10 100 , 100 1000 , 1000 10000 , 10000 100000
+myMaterial2 , 0 10 , 10 100 , 100 1000 , 1000 10000 , 10000 100000
+
+Regions:
+#Width  Num Cells  Material  source  Position (not used)
+10  100  myMaterial1  0
+10  10  myMaterial2  0
+
+Boundary:
+#Type  Detail1  Detail2  Detail3  Detail4
+
+#type: detail1 detail2 ...
+#marshak: boundaryTemp
+#vacuum: <none>
+#reflect: %reflecting
+
+Left marshak 1.0
+Right vacuum
+
+
+Initial Conditions:
+#puts initial radiation in each cell
+0.5
